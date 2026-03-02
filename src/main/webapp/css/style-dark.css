@@ -1,0 +1,337 @@
+/* ============================================================
+   DARK MODE THEME
+   Applied via data-theme="dark" on <html>.
+   JS reads/writes localStorage key "cdl-theme".
+   ============================================================ */
+
+[data-theme="dark"] {
+    --clr-bg: #0D1117;
+    --clr-surface: #161B26;
+    --clr-surface-alt: #1E2535;
+    --clr-primary: #4D78CC;
+    --clr-primary-dark: #3B62B5;
+    --clr-primary-light: #1A2845;
+    --clr-primary-mid: #5585D9;
+    --clr-text: #E6EBF4;
+    --clr-text-secondary: #8B9BB4;
+    --clr-muted: #5A6A82;
+    --clr-border: #252D3D;
+    --clr-border-strong: #334060;
+    --clr-error: #F87171;
+    --clr-error-bg: #2D1515;
+    --clr-success: #4ADE80;
+    --clr-success-bg: #142D1C;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30);
+    --shadow: 0 1px 4px rgba(0, 0, 0, 0.40), 0 0 0 1px var(--clr-border);
+}
+
+/* ── Explore button (navbar) ────────────────────────────────── */
+.btn-nav-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.32rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--clr-text-secondary);
+    background: var(--clr-surface-alt);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.btn-nav-explore::before {
+    content: '⊞';
+    font-size: 0.75rem;
+}
+
+.btn-nav-explore:hover {
+    color: var(--clr-primary);
+    border-color: var(--clr-primary);
+    background: var(--clr-primary-light);
+    text-decoration: none;
+}
+
+/* ── Language toggle (navbar, compact) ─────────────────────── */
+.lang-toggle {
+    display: flex;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.lang-btn {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--clr-muted);
+    text-decoration: none;
+    background: none;
+    border-right: 1px solid var(--clr-border);
+    letter-spacing: 0.04em;
+    transition: all var(--transition);
+    line-height: 1.4;
+}
+
+.lang-btn:last-child {
+    border-right: none;
+}
+
+.lang-btn:hover {
+    background: var(--clr-surface-alt);
+    color: var(--clr-text);
+    text-decoration: none;
+}
+
+.lang-btn.active {
+    background: var(--clr-primary);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ── Profile button ─────────────────────────────────────────── */
+.profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 0.6rem 0.3rem 0.3rem;
+    background: var(--clr-surface-alt);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+    color: var(--clr-text-secondary);
+    transition: all var(--transition);
+}
+
+.profile-btn:hover {
+    border-color: var(--clr-primary);
+    color: var(--clr-text);
+}
+
+.profile-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-xs);
+    background: var(--clr-primary);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-username {
+    font-size: 0.8rem;
+    font-weight: 500;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-caret {
+    font-size: 0.7rem;
+    color: var(--clr-muted);
+    transition: transform var(--transition);
+}
+
+.profile-dropdown.open .dropdown-caret {
+    transform: rotate(180deg);
+}
+
+/* ── Profile dropdown ──────────────────────────────────────── */
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    min-width: 210px;
+    box-shadow: var(--shadow);
+    z-index: 300;
+    animation: dropIn 0.15s ease both;
+}
+
+@keyframes dropIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-dropdown.open .profile-dropdown-menu {
+    display: block;
+}
+
+.dropdown-section {
+    padding: 0.35rem 0;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--clr-border);
+    margin: 0;
+}
+
+.dropdown-label {
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-muted);
+    padding: 0.4rem 0.85rem 0.2rem;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.82rem;
+    color: var(--clr-text-secondary);
+    text-decoration: none;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background var(--transition), color var(--transition);
+    text-align: left;
+}
+
+.dropdown-item .di-icon {
+    font-size: 0.78rem;
+    color: var(--clr-muted);
+}
+
+.dropdown-item:hover {
+    background: var(--clr-surface-alt);
+    color: var(--clr-text);
+    text-decoration: none;
+}
+
+.dropdown-item-danger {
+    color: var(--clr-error) !important;
+}
+
+.dropdown-item-danger:hover {
+    background: var(--clr-error-bg) !important;
+}
+
+/* Theme toggle row */
+.theme-toggle-row {
+    display: flex;
+    gap: 0.3rem;
+    padding: 0.25rem 0.85rem 0.4rem;
+}
+
+.theme-btn {
+    flex: 1;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: inherit;
+    background: var(--clr-surface-alt);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    color: var(--clr-text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+    text-align: center;
+}
+
+.theme-btn:hover {
+    border-color: var(--clr-primary);
+    color: var(--clr-primary);
+}
+
+.theme-btn.active {
+    background: var(--clr-primary-light);
+    border-color: var(--clr-primary);
+    color: var(--clr-primary);
+    font-weight: 600;
+}
+
+/* Language picker in dropdown */
+.lang-picker {
+    display: flex;
+    gap: 0.3rem;
+    padding: 0.25rem 0.85rem 0.4rem;
+}
+
+.lang-pick-btn {
+    flex: 1;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    background: var(--clr-surface-alt);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    color: var(--clr-text-secondary);
+    transition: all var(--transition);
+    display: block;
+}
+
+.lang-pick-btn:hover {
+    border-color: var(--clr-primary);
+    color: var(--clr-primary);
+    text-decoration: none;
+}
+
+.lang-pick-btn.active {
+    background: var(--clr-primary);
+    border-color: var(--clr-primary);
+    color: #fff;
+}
+
+/* ── Feed post card – channel badge ─────────────────────────── */
+.post-card-channel {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--clr-primary);
+    text-decoration: none;
+}
+
+.post-card-channel:hover {
+    text-decoration: underline;
+}
+
+/* Dark mode scroll and selection */
+[data-theme="dark"] ::selection {
+    background: rgba(77, 120, 204, 0.30);
+    color: var(--clr-text);
+}
+
+[data-theme="dark"] img {
+    filter: brightness(0.90);
+}
+
+/* ── Navbar adjustment for right-align ─────────────────────── */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+/* ── Theme init script inline helper ────────────────────────── */
+/* Applied immediately in <head> via a <script> tag to prevent flicker */
